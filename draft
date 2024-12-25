@@ -1,0 +1,15 @@
+let user = {
+  FirstName: document.querySelector('input[name="regName"]').value,
+  LastName: document.querySelector('input[name="regLastname"]').value,
+  Gmail: document.querySelector('input[name="regMail"]').value,
+  StudentID: document.querySelector('input[name="regStudent"]').value,
+  Department: document.querySelector('input[name="regDpt"]').value,
+  Password: document.querySelector('input[name="regPassword"]').value,
+};
+
+$FirstName = $data["regName"];
+$LastName = $data["regLastName"];
+$password = $data["regPassword"];
+$email = $data["regMail"];
+$studentId = $data["regStudent"];
+$dept = $data["regDept"];

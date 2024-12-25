@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="signup.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="create">
+        <h1>Create New Account</h1>
+        <span id="welcome">Welcome to SQI Attendance app</span>
+        <div id="firstname">
+          <fieldset id="firstname2">
+            <legend>First Name</legend>
+            <input
+              type="text"
+              name="regName"
+              id="regName"
+              placeholder="First Name"
+            />
+          </fieldset>
+          <span id="regNameError">
+            <div><img src="icons8-info-16 (2).png" alt="" /></div>
+            <p>Input your first name</p>
+          </span>
+        </div>
+        <div id="lastname">
+          <fieldset id="LastName2">
+            <legend>Last Name</legend>
+            <input
+              type="text"
+              name="regLastname"
+              id="regLastname"
+              placeholder="Last Name"
+            />
+          </fieldset>
+          <span id="regLastnameError">
+            <div><img src="icons8-info-16 (2).png" alt="" /></div>
+            <p>Input your Last name</p>
+          </span>
+        </div>
+        <div id="email">
+          <fieldset id="email2">
+            <legend>Email</legend>
+            <input
+              type="text"
+              name="regMail"
+              id="regMail"
+              placeholder="example@gmail.com"
+            />
+          </fieldset>
+          <span id="regMailError">
+            <div><img src="icons8-info-16 (2).png" alt="" /></div>
+            <p>
+              This email is invalid. Make sure it's written like
+              example@email.com
+            </p>
+          </span>
+        </div>
+        <div id="studentid">
+          <fieldset id="studentid2">
+            <legend>Student ID</legend>
+            <input
+              type="number"
+              name="regStudent"
+              id="regStudent"
+              placeholder="123459"
+            />
+          </fieldset>
+
+          <span id="regStudentError">
+            <div><img src="icons8-info-16 (2).png" alt="" /></div>
+            <p>Input your Student ID</p>
+          </span>
+          <span id="regStudentError2">
+            <div><img src="icons8-info-16 (2).png" alt="" /></div>
+            <p>Student ID Numbers Can't more than 6</p>
+          </span>
+        </div>
+        <div id="department">
+          <fieldset id="department2">
+            <legend>Department</legend>
+            <input type="text" id="regDpt" name="regDpt" />
+          </fieldset>
+          <span id="regDptError">
+            <div><img src="icons8-info-16 (2).png" alt="" /></div>
+            <p>Input your Department</p>
+          </span>
+        </div>
+        <div id="password">
+          <fieldset id="password2">
+            <legend>Password</legend>
+            <input
+              type="text"
+              name="regPassword"
+              id="regPassword"
+              placeholder="***********"
+            />
+          </fieldset>
+          <span id="regPasswordError">
+            <div><img src="icons8-info-16 (2).png" alt="" /></div>
+            <p>
+              Input password, must contain at least 1 uppercase and 1 lowercase,
+              1 number and special character (example: @ $ ! % * ? &)
+            </p>
+          </span>
+        </div>
+
+        <button name="regSubmit" id="signup">Sign up</button>
+      </div>
+    </div>
+  </body>
+</html>
+<!-- <script src="signup.js"></script> -->
+<script>
+  signup.addEventListener("click", () => {
+    sendRequest();
+  });
+  function sendRequest() {
+    const obj = {
+      firstName: document.getElementById("regName").value,
+      lastName: document.getElementById("regLastname").value,
+      email: document.getElementById("regMail").value,
+      studentID: document.getElementById("regStudent").value,
+      department: document.getElementById("regDpt").value,
+      password: document.getElementById("regPassword").value,
+    };
+    console.log(obj);
+    fetch("http://localhost/SQIAttendance/register.php", {
+      method: "POST",
+      "Content-Type": "application/json",
+      body: JSON.stringify(obj),
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        let rez = JSON.parse(data);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+</script>
+<!-- <script>
+  document.getElementById("signup").addEventListener("click", () => {
+    let obj = {
+      firstName: regName.value,
+      lastName: regLastname.value,
+      email: regMail.value,
+      studentID: regStudent.value,
+      department: regDpt.value,
+      password: regPassword.value,
+    };
+    console.log(obj);
+    sendRequest();
+  });
+
+  function sendRequest() {
+    fetch("http://localhost/SQIAttendance/register.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json " },
+      body: JSON.stringify(obj),
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        console.log(data);
+        let rez = JSON.parse(data);
+        console.log(rez);
+      })
+      .catch((error) => console.log(error));
+  }
+  sendRequest();
+</script> -->
